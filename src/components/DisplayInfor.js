@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./DisplayInfor.scss";
 import logo from "./../logo.svg";
 
 // class DisplayInfor extends React.Component {
+//    state = {
+//       isShowListUser: true
+//    }
 //    render() {
 //       return (
 //          <div className="display-infor-container">
-//             {true &&
+// <div>
+//    <span onClick={() => this.setState({ isShowListUser: !this.state.isShowListUser })}>{this.state.isShowListUser ? "Hide" : "Show"} List Users
+//    </span>
+
+// </div>
+//             {this.state.isShowListUser &&
 //                <>
 //                   {this.props.listUsers.map((user) => {
 //                      return (
@@ -28,6 +36,16 @@ const DisplayInfor = (props) => {
    const handleShowHideListUser = () => {
       setIsShowListUser(!isShowListUser);
    }
+
+   console.log('>>> call me render')
+
+   useEffect(() => {
+      console.log('>>> call me useEffect')
+      if (props.listUsers.length === 0) {
+         alert('You have deleted all the users');
+      }
+   }, [props.listUsers]);
+
    return (
       <div className="display-infor-container">
          <div>
