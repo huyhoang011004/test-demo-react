@@ -1,5 +1,7 @@
 import React from "react";
 import "./DisplayInfor.scss";
+import logo from "./../logo.svg";
+
 class DisplayInfor extends React.Component {
   state = {
     isShowListUsers: true,
@@ -12,6 +14,7 @@ class DisplayInfor extends React.Component {
   render() {
     return (
       <div className="display-infor-container">
+        <img src={logo} />
         <div>
           <span onClick={() => this.handleShowHide()}>
             {this.state.isShowListUsers ? "Hide list users" : "Show list users"}
