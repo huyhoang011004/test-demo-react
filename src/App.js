@@ -6,54 +6,11 @@ import MyComponent from "./components/MyComponent";
 import React from "react";
 
 class App extends React.Component {
-  state = {
-    name: "Hoang",
-    address: "Ha Noi",
-    age: 22,
-  };
-
-  handleClick = (event) => {
-    // console.log("handleClick");
-    console.log(event);
-    this.setState({
-      name: "John",
-      age: Math.floor(Math.random() * 100 + 1),
-    });
-  };
-
-  handleOnMouseOver = (event) => {
-    // console.log(event.pageX);
-  };
-
-  handleOnChangeInput = (event) => {
-    this.setState({
-      name: event.target.value,
-    });
-  };
-
-  handleOnSubmit = (event) => {
-    event.preventDefault();
-    console.log(this.state);
-  };
-
-  //JSX
   render() {
     return (
       <div>
-        My name is {this.state.name} and I'm {this.state.age} years old
-        <form onSubmit={(event) => this.handleOnSubmit(event)}>
-          <input
-            type="text"
-            onChange={(event) => this.handleOnChangeInput(event)}
-          />
-          <button
-            onClick={(event) => {
-              this.handleClick(event);
-            }}
-          >
-            Submit
-          </button>
-        </form>
+        <b>Hello React</b>
+        <MyComponent />
       </div>
     );
   }
