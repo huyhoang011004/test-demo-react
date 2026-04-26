@@ -16,7 +16,7 @@ const Header = () => {
                         <Nav.Link as={NavLink} to="/users">User</Nav.Link>
                         <Nav.Link as={NavLink} to="/admins">Admin</Nav.Link>
                     </Nav>
-                    <Nav><NavDropdown title="User" id="basic-nav-dropdown">
+                    <Nav><NavDropdown title="Settings" id="basic-nav-dropdown">
                         <NavDropdown.Item as={NavLink} to="/login">Log in</NavDropdown.Item>
                         <NavDropdown.Item as={NavLink} to="/logout">Log out</NavDropdown.Item>
                         <NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item>
