@@ -1,21 +1,68 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.app-container {
+    // Biến dùng chung để dễ quản lý chiều cao Header
+    $header-height: 72px; 
+
+    .header-container {
+        .navbar {
+            padding-top: 10px; 
+            z-index: 10;
+            background-color: transparent !important;
+            .navbar-nav {
+                .nav-link {
+                    color: rgba(78, 78, 78, 0.8);                    
+                    &.active {
+                    color: #00bbff !important; 
+                    font-weight: 600;
+                    }
+                }
+            }
+        }
+    }
+
+    .main-container { 
+    .app-content {
+        .homepage-container {
+            video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; 
+            }
+            .homepage-content {
+                position: absolute;
+                top: 50%;
+                left: 25%; // Vị trí chính giữa của nửa bên trái (50% / 2)
+                transform: translate(-50%, -50%); // Căn giữa chính khối này tại điểm 25%              
+                text-align: left; // Chữ căn trái
+                font-weight: 500;
+                line-height: 1.5;
+                
+                // Đảm bảo khối không quá rộng làm lấn sang nửa bên phải
+                max-width: 40%; 
+                
+                .title-1 {
+                    color: #000000;
+                    font-size: 2.5rem;
+                    margin-bottom: 1rem;
+                }
+                
+                .title-2 {
+                    color: rgba(78, 78, 78, 0.8);
+                    font-size: 1rem;
+                    margin-bottom: 1.5rem;               
+                }
+
+                .btn {
+
+                }
+            }
+        }
+        }
+    }
 }
 
-.app-container {
-  .header-container {
-    .navbar-nav {
-      .nav-link{
-        &.active {
-          color: #00bbff;
-        }
-      }
-    }
-  }
-}
+
+
