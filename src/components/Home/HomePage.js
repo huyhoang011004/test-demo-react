@@ -8,7 +8,7 @@ const HomePage = (Props) => {
                 <div className="title-1">There 's a better way to ask</div>
                 <div className="title-2"> Get answers to your technical questions from our community of developers. And share your knowledge to help others. Everyone is welcome.</div>
                 <div>
-                    <button className="btn btn-dark" size="xl">Get started for free</button>
+                    <button className="btn btn-dark">Get started for free</button>
                 </div>
             </div>
         </div>
