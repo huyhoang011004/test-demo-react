@@ -5,4 +5,21 @@
             height: 100vh !important;
             }
     }
+    .admin-content {
+        flex: 1;
+        padding: 20px;
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .admin-body {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            
+        }
+    }
 }

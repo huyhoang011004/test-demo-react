@@ -21,11 +21,6 @@ const Header = () => {
                         <Button variant="light me-3">Log in</Button>
                         <Button variant="dark">Sign up</Button>
                     </Nav>
-                    {/* <Nav><NavDropdown title="Settings" id="basic-nav-dropdown" align="end">
-                        <NavDropdown.Item as={NavLink} to="/login">Log in</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/logout">Log out</NavDropdown.Item>
-                        <NavDropdown.Item as={NavLink} to="/profile">Profile</NavDropdown.Item>
-                    </NavDropdown></Nav> */}
                 </Navbar.Collapse>
             </Container>
         </Navbar>

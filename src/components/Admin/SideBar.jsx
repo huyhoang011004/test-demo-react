@@ -8,6 +8,7 @@ import {
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
+import { Link } from 'react-router-dom';
 
 import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
 import sidebarBg from '../../assets/bg2.jpg';
@@ -30,7 +31,7 @@ const SideBar = (props) => {
                 <SidebarHeader>
                     <div
                         style={{
-                            padding: '24px',
+                            padding: '15px',
                             textTransform: 'uppercase',
                             fontWeight: 'bold',
                             fontSize: 14,
@@ -51,6 +52,7 @@ const SideBar = (props) => {
                             icon={<MdDashboard />}
                         >
                             Dashboard
+                            <Link to="/admins" />
                         </MenuItem>
 
                     </Menu>
@@ -59,9 +61,18 @@ const SideBar = (props) => {
                             icon={<FaGem />}
                             title="Quản Lý"
                         >
-                            <MenuItem> Quản lý User</MenuItem>
-                            <MenuItem> Quản lý Bài Quiz</MenuItem>
-                            <MenuItem> Quản lý Câu Hỏi</MenuItem>
+                            <MenuItem >
+                                Quản lý User
+                                <Link to="/admins/manage-users" />
+                            </MenuItem>
+                            <MenuItem >
+                                Quản lý Bài Quiz
+                                <Link to="/admins/manage-quiz" />
+                            </MenuItem>
+                            <MenuItem >
+                                Quản lý Câu Hỏi
+                                <Link to="/admins/manage-questions" />
+                            </MenuItem>
                         </SubMenu>
 
                     </Menu>
