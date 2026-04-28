@@ -2,18 +2,6 @@ import "./App.scss";
 import Header from "./components/Header/Header";
 import { Outlet, Link } from "react-router-dom";
 
-
-// class App extends React.Component {
-//   render() {
-//     return (
-//       <div className="app-container">
-
-//         <MyComponent />
-//       </div>
-//     );
-//   }
-// }
-
 const App = () => {
 
   return (
