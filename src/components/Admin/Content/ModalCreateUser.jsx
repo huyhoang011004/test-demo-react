@@ -3,7 +3,7 @@ import { Form, Col, Row, InputGroup, Button, Modal } from 'react-bootstrap';
 import { FcPlus } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { toast } from "react-toastify";
-import axios from 'axios';
+import { postCreateNewUser } from '../../../services/apiService';
 function ModalCreateUser(props) {
    const { show, setShow } = props;
    const handleClose = () => {
@@ -53,29 +53,14 @@ function ModalCreateUser(props) {
       }
 
       // submit api
-      // let data = {
-      //    email: email,
-      //    password: password,
-      //    username: username,
-      //    role: role,
-      //    userImage: image
-      // }
-      // console.log(data);
-
-      const data = new FormData();
-      data.append('email', email);
-      data.append('password', password);
-      data.append('username', username);
-      data.append('role', role);
-      data.append('userImage', image);
-
-      let res = await axios.post('http://localhost:8081/api/v1/participant', data);
-      console.log(res);
-      if (res.data && res.data.EC === 0) {
-         toast.success(res.data.EM);
+      let data = await postCreateNewUser(email, password, username, role, image);
+      console.log("data", data);
+      // handle response
+      if (data && data.EC === 0) {
+         toast.success(data.EM);
          handleClose();
       } else {
-         toast.error(res.data.EM);
+         toast.error(data.EM);
       }
    }
 
