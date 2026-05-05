@@ -1,24 +1,15 @@
 import 'react-pro-sidebar/dist/css/styles.css';
-import {
-    ProSidebar,
-    Menu,
-    MenuItem,
-    SubMenu,
-    SidebarHeader,
-    SidebarFooter,
-    SidebarContent,
-} from 'react-pro-sidebar';
+import { useState } from 'react';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent, } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart } from 'react-icons/fa';
-import sidebarBg from '../../assets/bg2.jpg';
-
+import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaBars } from 'react-icons/fa';
 import { DiReact } from 'react-icons/di';
 import { MdDashboard } from 'react-icons/md';
-
+import sidebarBg from '../../assets/bg2.jpg';
 
 const SideBar = (props) => {
-    const { image, collapsed, toggled, handleToggleSidebar } = props;
+    const [collapsed, setCollapsed] = useState(false);
+    const { image, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar
@@ -31,7 +22,7 @@ const SideBar = (props) => {
                 <SidebarHeader>
                     <div
                         style={{
-                            padding: '15px',
+                            padding: '24px',
                             textTransform: 'uppercase',
                             fontWeight: 'bold',
                             fontSize: 14,
@@ -39,10 +30,23 @@ const SideBar = (props) => {
                             overflow: 'hidden',
                             textOverflow: 'ellipsis',
                             whiteSpace: 'nowrap',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: collapsed ? 'center' : 'flex-start', // Căn giữa icon khi thu gọn
+                            cursor: 'pointer'
                         }}
+                        onClick={() => setCollapsed(!collapsed)} // Click vào cả vùng header để đóng/mở
                     >
-                        <DiReact size={"3em"} color={'00bfff'} />
-                        <span style={{ marginLeft: 10 }}>Hoi Dan IT</span>
+                        {collapsed ? (
+                            // Khi thu gọn: Chỉ hiện icon Menu (FaBars)
+                            <FaBars size={"2em"} />
+                        ) : (
+                            // Khi mở rộng: Hiện Logo React + Tên
+                            <>
+                                <DiReact size={"2em"} color={'00bfff'} />
+                                <span style={{ marginLeft: 10 }}>Hoi Dan IT</span>
+                            </>
+                        )}
                     </div>
                 </SidebarHeader>
 
@@ -90,11 +94,25 @@ const SideBar = (props) => {
                             target="_blank"
                             className="sidebar-btn"
                             rel="noopener noreferrer"
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: collapsed ? 'center' : 'flex-start' // Căn giữa khi thu gọn
+                            }}
                         >
-                            <FaGithub />
-                            <span style={{ whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
-                                Hỏi Dân IT
-                            </span>
+                            <FaGithub size={"1.5em"} />
+
+                            {/* Nếu NOT collapsed thì mới hiện chữ */}
+                            {!collapsed && (
+                                <span style={{
+                                    whiteSpace: 'nowrap',
+                                    textOverflow: 'ellipsis',
+                                    overflow: 'hidden',
+                                    marginLeft: '10px' // Tạo khoảng cách với icon
+                                }}>
+                                    Fork me on GitHub
+                                </span>
+                            )}
                         </a>
                     </div>
                 </SidebarFooter>
