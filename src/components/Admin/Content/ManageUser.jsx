@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './ManageUser.scss';
+import TableUser from './TableUser';
 import Button from 'react-bootstrap/Button';
 import ModalCreateUser from './ModalCreateUser';
 import { FcPlus } from 'react-icons/fc';
@@ -9,28 +10,16 @@ const ManageUser = () => {
     return (
         <div className="manage-user-container">
             <div className="title">
-                Manage User</div>
+                <h4>Manage User</h4></div>
             <div className="users-content">
                 <div>
-                    <Button variant="primary" onClick={() => setShowModal(true)}>
-                        <FcPlus /> Add User
+                    <Button className="btn-add-user" variant="primary" onClick={() => setShowModal(true)}>
+                        <FcPlus /> Add New User
                     </Button>
                 </div>
 
                 <div className="users-table">
-                    table users
-                    <table>
-                        <thead>
-                            <tr>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                    <TableUser />
                 </div>
             </div>
             <ModalCreateUser show={showModal} setShow={setShowModal} />

@@ -1,6 +1,12 @@
 .manage-user-container {
     .users-content{
-
+        display: inline;
+        .btn-add-user{
+            margin-top: 20px;
+        }
+        .users-table{
+            margin-top: 20px;
+        }
     }
 }
 
