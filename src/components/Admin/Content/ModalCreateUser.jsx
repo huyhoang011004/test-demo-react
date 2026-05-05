@@ -1,23 +1,35 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Col from 'react-bootstrap/Col';
-import Form from 'react-bootstrap/Form';
-import Row from 'react-bootstrap/Row';
-
-function ModalCreateUser() {
-   const [show, setShow] = useState(false);
+import { Form, Col, Row, InputGroup, Button, Modal } from 'react-bootstrap';
+import { FcPlus } from 'react-icons/fc';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+function ModalCreateUser(props) {
+   const { show, setShow } = props;
 
    const handleClose = () => setShow(false);
    const handleShow = () => setShow(true);
 
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [username, setUsername] = useState('');
+   const [role, setRole] = useState('USER');
+   const [image, setImage] = useState('');
+   const [showPassword, setShowPassword] = useState(false);
+   const [previewImage, setPreviewImage] = useState('');
+
+   const handleChangeImage = (e) => {
+      if (e.target && e.target.files && e.target.files[0]) {
+         setPreviewImage(URL.createObjectURL(e.target.files[0]));
+         setImage(e.target.files[0]);
+      } else {
+         // setPreviewImage('');
+         // setImage('');
+      }
+   };
+
    return (
       <>
-         <Button variant="primary" onClick={handleShow}>
-            Add User
-         </Button>
 
-         <Modal show={show} onHide={handleClose} size="xl" backdrop="static" keyboard={false}>
+         <Modal show={show} onHide={handleClose} size="xl" backdrop="static" keyboard={false} className='modal-add-user'>
             <Modal.Header closeButton>
                <Modal.Title>Create New User</Modal.Title>
             </Modal.Header>
@@ -26,34 +38,53 @@ function ModalCreateUser() {
                   <Row className="mb-3">
                      <Form.Group as={Col} controlId="formGridEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" />
+                        <Form.Control type="email" placeholder="Enter email" value={email} onChange={(e) => setEmail(e.target.value)} />
                      </Form.Group>
 
                      <Form.Group as={Col} controlId="formGridPassword">
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type="password" placeholder="Password" />
+                        <InputGroup>
+                           <Form.Control
+                              type={showPassword ? "text" : "password"} // 2. Thay đổi type
+                              placeholder="Password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
+                           />
+
+                           <InputGroup.Text
+                              style={{ cursor: 'pointer' }}
+                              onClick={() => setShowPassword(!showPassword)}
+                           >
+                              {showPassword ? <FaEye /> : <FaEyeSlash />}
+                           </InputGroup.Text>
+                        </InputGroup>
                      </Form.Group>
                   </Row>
 
                   <Row className="mb-3">
                      <Form.Group as={Col} controlId="formGridCity">
                         <Form.Label>Username</Form.Label>
-                        <Form.Control type="username" placeholder="Username" />
+                        <Form.Control type="username" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} />
                      </Form.Group>
 
                      <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>Role</Form.Label>
-                        <Form.Select defaultValue="Choose...">
+                        <Form.Select defaultValue="Choose..." value={role} onChange={(e) => setRole(e.target.value)}>
                            <option value="USER">USER</option>
                            <option value="ADMIN">ADMIN</option>
                         </Form.Select>
                      </Form.Group>
                   </Row>
 
-                  <Row className="md-12">
-                     <Form.Label>Image</Form.Label>
-                     <input type="file" />
-                  </Row>
+                  <Form.Label className='label-upload' htmlFor='upload-file'>
+                     <FcPlus /> Upload File Image
+                  </Form.Label>
+                  <input type="file" id="upload-file" hidden
+                     onChange={(e) => handleChangeImage(e)} />
+
+                  <div className="mb-3 img-preview">
+                     {previewImage ? <img src={previewImage} /> : <span>Preview Image</span>}
+                  </div>
                </Form>
             </Modal.Body>
             <Modal.Footer>

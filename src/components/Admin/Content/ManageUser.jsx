@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
+import './ManageUser.scss';
+import Button from 'react-bootstrap/Button';
 import ModalCreateUser from './ModalCreateUser';
 
 const ManageUser = () => {
+    const [showModal, setShowModal] = useState(false);
+
     return (
         <div className="manage-user-container">
-            <div className="title">Manage User</div>
-            <div className="content">
+            <div className="title">
+                Manage User</div>
+            <div className="users-content">
                 <div>
-                    <ModalCreateUser />
+                    <Button variant="primary" onClick={() => setShowModal(true)}>
+                        Add User
+                    </Button>
+
                 </div>
+                table users
                 <table>
                     <thead>
                         <tr>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Actions</th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>John Doe</td>
-                            <td>Admin</td>
-                            <td>
-                                <button>Edit</button>
-                                <button>Delete</button>
-                            </td>
+
                         </tr>
                     </tbody>
                 </table>
+
             </div>
+            <ModalCreateUser show={showModal} setShow={setShowModal} />
         </div>
     );
 }
