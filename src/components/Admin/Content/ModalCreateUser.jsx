@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Form, Col, Row, InputGroup, Button, Modal } from 'react-bootstrap';
 import { FcPlus } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { toast } from "react-toastify";
 import axios from 'axios';
 function ModalCreateUser(props) {
    const { show, setShow } = props;
@@ -31,8 +32,26 @@ function ModalCreateUser(props) {
       }
    };
 
+   const validateEmail = (email) => {
+      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return re.test(String(email).toLowerCase());
+   }
+
    const handleSubmitCreateUser = async () => {
       // validate
+      if (!validateEmail(email)) {
+         toast.error('Invalid email format!');
+         return;
+      }
+      if (!password) {
+         toast.error('Password is required!');
+         return;
+      }
+      if (!username) {
+         toast.error('Username is required!');
+         return;
+      }
+
       // submit api
       // let data = {
       //    email: email,
@@ -52,6 +71,12 @@ function ModalCreateUser(props) {
 
       let res = await axios.post('http://localhost:8081/api/v1/participant', data);
       console.log(res);
+      if (res.data && res.data.EC === 0) {
+         toast.success(res.data.EM);
+         handleClose();
+      } else {
+         toast.error(res.data.EM);
+      }
    }
 
    return (
