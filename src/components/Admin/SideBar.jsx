@@ -2,22 +2,19 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { useState } from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent, } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import { FaTachometerAlt, FaGem, FaList, FaGithub, FaRegLaughWink, FaHeart, FaBars } from 'react-icons/fa';
+import { FaGem, FaGithub, FaBars } from 'react-icons/fa';
 import { DiReact } from 'react-icons/di';
 import { MdDashboard } from 'react-icons/md';
 import sidebarBg from '../../assets/bg2.jpg';
 
 const SideBar = (props) => {
     const [collapsed, setCollapsed] = useState(false);
-    const { image, toggled, handleToggleSidebar } = props;
     return (
         <>
             <ProSidebar
                 image={sidebarBg}
                 collapsed={collapsed}
-                toggled={toggled}
                 breakPoint="md"
-                onToggle={handleToggleSidebar}
             >
                 <SidebarHeader>
                     <div

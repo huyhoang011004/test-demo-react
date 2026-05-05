@@ -2,10 +2,18 @@ import { useState } from 'react';
 import { Form, Col, Row, InputGroup, Button, Modal } from 'react-bootstrap';
 import { FcPlus } from 'react-icons/fc';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import axios from 'axios';
 function ModalCreateUser(props) {
    const { show, setShow } = props;
-
-   const handleClose = () => setShow(false);
+   const handleClose = () => {
+      setShow(false);
+      setEmail('');
+      setPassword('');
+      setUsername('');
+      setRole('USER');
+      setImage('');
+      setPreviewImage('');
+   }
    const handleShow = () => setShow(true);
 
    const [email, setEmail] = useState('');
@@ -20,15 +28,34 @@ function ModalCreateUser(props) {
       if (e.target && e.target.files && e.target.files[0]) {
          setPreviewImage(URL.createObjectURL(e.target.files[0]));
          setImage(e.target.files[0]);
-      } else {
-         // setPreviewImage('');
-         // setImage('');
       }
    };
 
+   const handleSubmitCreateUser = async () => {
+      // validate
+      // submit api
+      // let data = {
+      //    email: email,
+      //    password: password,
+      //    username: username,
+      //    role: role,
+      //    userImage: image
+      // }
+      // console.log(data);
+
+      const data = new FormData();
+      data.append('email', email);
+      data.append('password', password);
+      data.append('username', username);
+      data.append('role', role);
+      data.append('userImage', image);
+
+      let res = await axios.post('http://localhost:8081/api/v1/participant', data);
+      console.log(res);
+   }
+
    return (
       <>
-
          <Modal show={show} onHide={handleClose} size="xl" backdrop="static" keyboard={false} className='modal-add-user'>
             <Modal.Header closeButton>
                <Modal.Title>Create New User</Modal.Title>
@@ -69,7 +96,7 @@ function ModalCreateUser(props) {
 
                      <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>Role</Form.Label>
-                        <Form.Select defaultValue="Choose..." value={role} onChange={(e) => setRole(e.target.value)}>
+                        <Form.Select value={role} onChange={(e) => setRole(e.target.value)}>
                            <option value="USER">USER</option>
                            <option value="ADMIN">ADMIN</option>
                         </Form.Select>
@@ -91,7 +118,7 @@ function ModalCreateUser(props) {
                <Button variant="secondary" onClick={handleClose}>
                   Close
                </Button>
-               <Button variant="primary" onClick={handleClose}>
+               <Button variant="primary" onClick={handleSubmitCreateUser}>
                   Save
                </Button>
             </Modal.Footer>
